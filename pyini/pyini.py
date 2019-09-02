@@ -3,14 +3,6 @@ import os
 import sys
 
 
-def unwrap_quotes(value):
-    """Remove eventual quotes around the string."""
-    QUOTE_CHARS = ["'", '"']
-    if value and value[0] in QUOTE_CHARS and value[0] == value[-1]:
-        value = value[1:-1]
-    return value
-
-
 def parse_ini_file(filename):
     if not os.path.isfile(filename):
         raise FileNotFoundError
@@ -57,7 +49,7 @@ def main():
     try:
         ini = parse_ini_file(filename)
         value = extract_value(ini, section, key)
-        print(unwrap_quotes(value))
+        print(value)
     except KeyError:
         sys.exit(2)
     except FileNotFoundError:
